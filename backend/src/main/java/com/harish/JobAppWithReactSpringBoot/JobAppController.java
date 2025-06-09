@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -18,7 +19,7 @@ public class JobAppController {
         return jobAppService.getJobs();
     }
     @GetMapping("jobs/{id}")
-    private JobPost getJob(@PathVariable("id") int jobId){
+    private Optional<JobPost> getJob(@PathVariable("id") int jobId){
         return jobAppService.getJob(jobId);
     }
     @PostMapping("jobs")
@@ -32,5 +33,10 @@ public class JobAppController {
     @PutMapping("/jobs")
     private JobPost editJob(@RequestBody JobPost jobPost){
         return jobAppService.editJob(jobPost);
+    }
+
+    @GetMapping("/")
+    private void initalPush(){
+        jobAppService.initalPush();
     }
 }
