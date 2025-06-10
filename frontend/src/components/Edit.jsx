@@ -20,7 +20,7 @@ const Edit = () => {
 
   useEffect(() => {
     const fetchInitialPosts = async (id) => {  
-      const response = await axios.get(`http://localhost:8080/jobPost/${id}`);
+      const response = await axios.get(`http://localhost:8080/jobs/${id}`);
       console.log(response.data);
       setForm(response.data);
     };
@@ -28,15 +28,19 @@ const Edit = () => {
   }, [currId]);
 
   const handleSubmit = (e) => {
+    console.log(form);
+    
     e.preventDefault();
     axios     
-      .post("http://localhost:8080/jobPost",form)
+      .post("http://localhost:8080/jobs",form)
       .then((resp) => {
         console.log(resp.data);
+            navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
+
   };
 
   const handleChange = (e) => {
@@ -144,7 +148,6 @@ const Edit = () => {
             sx={{ width: "50%", margin: "2% auto" }}
             variant="contained"
             type="submit"
-            onClick={() => navigate("/")}
           >
             Submit
           </Button>

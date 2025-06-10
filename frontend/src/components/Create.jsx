@@ -36,9 +36,10 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/jobPost",form)
+      .post("http://localhost:8080/jobs",form)
       .then((resp) => {
         console.log(resp.data);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -134,7 +135,7 @@ const Create = () => {
             sx={{ width: "50%", margin: "2% auto" }}
             variant="contained"
             type="submit"
-            onClick={()=>navigate("/")}
+  
           >
             Submit
           </Button>
